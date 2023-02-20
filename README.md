@@ -1,7 +1,3 @@
-# MapMyTrip
-
-App that let's you share your trip experience.
-
 ## Getting Started
 
 This project is a starting point for a Flutter application.
