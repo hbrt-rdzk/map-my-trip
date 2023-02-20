@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-import 'package:mapmytrip/routes/routes.dart';
-import 'package:mapmytrip/services/firestore.dart';
-import 'package:mapmytrip/services/models.dart';
-import 'package:mapmytrip/themes/theme.dart';
+import 'package:talk_plus_plus/routes/routes.dart';
+import 'package:talk_plus_plus/services/firestore.dart';
+import 'package:talk_plus_plus/services/models.dart';
+import 'package:talk_plus_plus/themes/theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

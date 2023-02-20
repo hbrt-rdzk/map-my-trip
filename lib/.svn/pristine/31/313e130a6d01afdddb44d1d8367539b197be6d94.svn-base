@@ -1,0 +1,26 @@
+import 'package:flutter/material.dart';
+import 'package:talk_plus_plus/screens/login.dart';
+import 'package:talk_plus_plus/screens/home.dart';
+import 'package:talk_plus_plus/services/auth.dart';
+
+class StartScreen extends StatelessWidget {
+  const StartScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: AuthService().userStream,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Text('loading');
+        } else if (snapshot.hasError) {
+          return const Text('error');
+        } else if (snapshot.hasData) {
+          return HomeScreen();
+        } else {
+          return const LoginScreen();
+        }
+      },
+    );
+  }
+}

@@ -1,0 +1,13 @@
+import 'package:talk_plus_plus/screens/about.dart';
+import 'package:talk_plus_plus/screens/start.dart';
+import 'package:talk_plus_plus/screens/login.dart';
+import 'package:talk_plus_plus/screens/profile.dart';
+import 'package:talk_plus_plus/screens/topics.dart';
+
+var appRoutes = {
+  '/': (context) => const StartScreen(),
+  '/login': (context) => const LoginScreen(),
+  '/about': (context) =>  AboutScreen(),
+  '/topics': (context) => const TopicsScreen(),
+  '/profile': (context) => const ProfileScreen()
+};

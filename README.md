@@ -1,6 +1,6 @@
-# mapmytrip
+# MapMyTrip
 
-A new Flutter project.
+App that let's you share your trip experience.
 
 ## Getting Started
 

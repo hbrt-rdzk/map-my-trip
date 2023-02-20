@@ -25,3 +25,10 @@ linux/
 macos/ 
 web/
 windows/ 
+old_pubspec.yaml
+
+# . files
+.DS_Store
+.flutter-plugins
+.flutter-plugins-dependencies
+
