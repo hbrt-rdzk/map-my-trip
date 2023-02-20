@@ -8,6 +8,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(96, 200, 166, 1),
         body: Container(
       padding: const EdgeInsets.all(30),
       child: Column(
@@ -18,24 +19,24 @@ class LoginScreen extends StatelessWidget {
             'assets/logo.png',
           ),
           LoginButton(
-              color: Colors.orange,
-              icon: Icons.email_rounded,
-              text: "Continue with email",
+              color: Colors.orangeAccent,
+              icon: FontAwesomeIcons.doorOpen,
+              text: "Log in",
               loginMethod: AuthService().emailLogin),
           LoginButton(
-            color: Colors.orangeAccent,
+            color: Colors.orange,
             text: "Continue as guest",
             loginMethod: AuthService().anonLogin,
             icon: FontAwesomeIcons.userNinja,
           ),
           LoginButton(
-            color: Colors.blue,
-            icon: Icons.email,
+            color: Colors.blueAccent,
+            icon: FontAwesomeIcons.personCirclePlus,
             loginMethod: AuthService().emailLogin,
-            text: "Sign in with email",
+            text: "Register account",
           ),
           LoginButton(
-            color: Colors.blueAccent,
+            color: Colors.blue,
             text: "Use your Google account",
             loginMethod: AuthService().googleSignIn,
             icon: FontAwesomeIcons.google,

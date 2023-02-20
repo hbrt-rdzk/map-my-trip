@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mapmytrip/screens/about.dart';
 import 'package:mapmytrip/screens/profile.dart';
-import 'package:mapmytrip/screens/progress.dart';
+import 'package:mapmytrip/screens/trips.dart';
 import 'package:mapmytrip/screens/topics.dart';
 import 'package:mapmytrip/widgets/bottom_nav.dart';
 
@@ -15,9 +14,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _myWidgets = [
     const TopicsScreen(),
-    const ProgressScreen(),
+    const TripsScreen(),
     const ProfileScreen(),
-    AboutScreen()
   ];
   int _index = 0;
   late BottomNavBar bottomNavBar;

@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mapmytrip/services/auth.dart';
-import 'package:mapmytrip/widgets/bottom_nav.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -13,13 +12,6 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   late bool? _isAnonymousUser;
-  var user = {
-    'Name': 'Hubert',
-    'Surname': 'Rudzik',
-    'Age': 22,
-    'Nationality': '🇵🇱',
-    'Lessons': '16'
-  };
 
   @override
   void initState() {
@@ -33,29 +25,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: const Text('Profile'),
-          backgroundColor: Colors.orange,
+          backgroundColor: Colors.green,
         ),
         body: Builder(builder: (BuildContext context) {
           if (_isAnonymousUser == true) {
-            return AnonymousAccount();
-            // return ElevatedButton(
-            //     child: const Text('Sign'),
-            //     onPressed: () async {
-            //       await AuthService().anonSignOut();
-            //       Navigator.of(context)
-            //           .pushNamedAndRemoveUntil('/', (route) => false);
-            //     });
+            return const AnonymousAccount();
           } else {
-            return SignedUser(
-              userInfo: user,
-            );
-            // return ElevatedButton(
-            // child: const Text('Sign out'),
-            // onPressed: () async {
-            //   await AuthService().anonSignOut();
-            //   Navigator.of(context)
-            //       .pushNamedAndRemoveUntil('/', (route) => false);
-            // });
+            return SignedUser();
           }
         }));
   }
@@ -70,10 +46,13 @@ class AnonymousAccount extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: Colors.blueAccent, width: 2),
+          border: Border.all(color: const Color.fromARGB(255, 18, 103, 21), width: 2),
         ),
         child: TextButton(
-          child: const Text("Anonymous account, sign in"),
+          child: const Text(
+            "Anonymous account, sign in",
+            style: TextStyle(color: Color.fromARGB(255, 18, 103, 21)),
+          ),
           onPressed: () async {
             await AuthService().anonSignOut();
             Navigator.of(context)
@@ -86,98 +65,89 @@ class AnonymousAccount extends StatelessWidget {
 }
 
 class SignedUser extends StatelessWidget {
-  Map<String, Object> userInfo;
-  SignedUser({required this.userInfo, super.key});
+  SignedUser({super.key});
 
   final _controller = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
-    final entries = [
-      Container(
-          height: 130,
-          padding: const EdgeInsets.only(top: 10),
-          decoration: BoxDecoration(
-            color: Colors.purple,
-            border: Border.all(color: Colors.black),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Column(children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Image.asset(
-                  'assets/user.png',
-                  height: 100,
-                  width: 100,
-                  alignment: Alignment.bottomRight,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Name: ${userInfo['Name']}',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    Text('Age: ${userInfo['Age']}',
-                        style: TextStyle(color: Colors.white)),
-                    Text('Nationality: ${userInfo['Nationality']}',
-                        style: TextStyle(color: Colors.white)),
-                  ],
-                ),
-                IconButton(
-                  onPressed: () {
-                    print("1234");
-                  },
-                  icon: const Icon(FontAwesomeIcons.penToSquare),
-                  color: Colors.white,
-                ),
-              ],
-            ),
-          ])),
-      Container(
+    return Column(
+      children: [
+      ProfilePicture(),
+      ProfileButton(icon: FontAwesomeIcons.brush, text: 'Edit Account'),
+      ProfileButton(icon: FontAwesomeIcons.bell, text: 'Notifications'),
+      ProfileButton(icon: FontAwesomeIcons.gear, text: 'Settings'),
+      ProfileButton(icon: FontAwesomeIcons.info, text: 'Info'),
+      ProfileButton(icon: FontAwesomeIcons.doorClosed, text: 'Log out'),
+      ],
+    ) ;
+  }
+}
+
+class ProfileButton extends StatelessWidget {
+  ProfileButton({super.key, required this.icon, required this.text});
+  IconData icon;
+  String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: Colors.deepPurple,
-          border: Border.all(color: Colors.black),
+          color: const Color.fromARGB(255, 234, 234, 234),
           borderRadius: BorderRadius.circular(20),
         ),
-        height: 130,
-        alignment: Alignment.center,
-        child: Text("Finished Lessons: ${userInfo['Lessons']}",
-            style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
-                fontSize: 24)),
-      ),
-      Container(
-          decoration: BoxDecoration(
-            color: Colors.blueAccent,
-            border: Border.all(color: Colors.black),
-            borderRadius: BorderRadius.circular(20),
+        child: TextButton(
+          child: Row(
+            children: [
+              Icon(
+                icon,
+                color: Colors.greenAccent,
+                size: 20,
+              ),
+              const SizedBox(
+                width: 22,
+              ),
+              Expanded(
+                  child: Text(
+                text,
+                style: const TextStyle(color: Colors.grey),
+              )),
+              const Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.black,
+              )
+            ],
           ),
-          height: 130,
-          child: TextButton(
-            child: const Text("Log out",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 24)),
-            onPressed: () async {
-              await AuthService().anonSignOut();
-              Navigator.of(context)
-                  .pushNamedAndRemoveUntil('/', (route) => false);
-            },
-          )),
-    ];
-    return ListView.builder(
-      physics: const AlwaysScrollableScrollPhysics(),
-      controller: _controller,
-      padding: const EdgeInsets.all(10),
-      itemCount: entries.length,
-      itemBuilder: (BuildContext context, int index) {
-        return Padding(
-            padding: const EdgeInsets.only(bottom: 5), child: entries[index]);
-      },
+          onPressed: () async {
+            await AuthService().anonSignOut();
+            Navigator.of(context)
+                .pushNamedAndRemoveUntil('/', (route) => false);
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class ProfilePicture extends StatelessWidget {
+  const ProfilePicture({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      child: Center(
+        child: SizedBox(
+          height:115,
+          width: 115,
+          child: CircleAvatar(
+            backgroundImage: AssetImage("assets/default_user.png"),
+          )
+        ),
+      ),
     );
   }
 }

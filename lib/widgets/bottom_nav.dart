@@ -18,36 +18,30 @@ class _BottomNavBarState extends State<BottomNavBar> {
       items: const [
         BottomNavigationBarItem(
           icon: Icon(
-            FontAwesomeIcons.graduationCap,
+            FontAwesomeIcons.mapLocation,
             size: 20,
           ),
-          label: 'Topics',
+          label: 'Map',
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            FontAwesomeIcons.barsProgress,
+            FontAwesomeIcons.bookAtlas,
             size: 20,
           ),
-          label: 'Progress',
+          label: 'Your trips',
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            FontAwesomeIcons.person,
+            FontAwesomeIcons.personHiking,
             size: 20,
           ),
           label: 'Profile',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            FontAwesomeIcons.bolt,
-            size: 20,
-          ),
-          label: 'About',
-        ),
       ],
       type: BottomNavigationBarType.fixed,
       currentIndex: _selectedIndex,
-      selectedItemColor: Colors.orange[200],
+      backgroundColor: Color.fromARGB(255, 234, 234, 234),
+      selectedItemColor: Colors.greenAccent,
       onTap: (int index) {
         setState(() {
           _selectedIndex = index;

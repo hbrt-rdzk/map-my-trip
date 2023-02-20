@@ -6,7 +6,7 @@ var appTheme = ThemeData(
   bottomAppBarTheme: const BottomAppBarTheme(
     color: Color.fromRGBO(255, 251, 243, 1),
   ),
-  scaffoldBackgroundColor: Color.fromRGBO(96, 200, 166, 1),
+  scaffoldBackgroundColor: Colors.white,
   textTheme: const TextTheme(
     bodyLarge: TextStyle(fontSize: 18),
     bodyMedium: TextStyle(fontSize: 16),
