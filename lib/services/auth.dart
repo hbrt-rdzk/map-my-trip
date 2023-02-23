@@ -1,21 +1,30 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:mapmytrip/screens/profile/login.dart';
+import 'package:mapmytrip/screens/profile/register.dart';
 
 class AuthService {
   final userStream = FirebaseAuth.instance.authStateChanges();
   final user = FirebaseAuth.instance.currentUser;
 
-  Future<void> anonLogin() async {
+  Future<void> anonLogin(BuildContext context) async {
     try {
       await FirebaseAuth.instance.signInAnonymously();
     } on FirebaseAuthException catch (e) {}
   }
 
-  Future<void> emailLogin() async {}
+  Future<void> logIn(BuildContext context) async {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const ProfileLogin()));
+  }
 
-  Future<void> emailSignIn() async {}
+  Future<void> signIn(BuildContext context) async {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const ProfileRegister()));
+  }
 
-  Future<void> googleSignIn() async {
+  Future<void> googleSignIn(BuildContext context) async {
     try {
       final googleUser = await GoogleSignIn().signIn();
 
@@ -33,7 +42,7 @@ class AuthService {
     } on FirebaseAuthException catch (e) {}
   }
 
-  Future<void> anonSignOut() async {
+  Future<void> anonSignOut(BuildContext context) async {
     FirebaseAuth.instance.signOut();
   }
 }

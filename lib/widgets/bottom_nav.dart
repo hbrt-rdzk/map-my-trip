@@ -40,7 +40,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       ],
       type: BottomNavigationBarType.fixed,
       currentIndex: _selectedIndex,
-      backgroundColor: Color.fromARGB(255, 234, 234, 234),
+      backgroundColor: const Color.fromARGB(255, 234, 234, 234),
       selectedItemColor: Colors.greenAccent,
       onTap: (int index) {
         setState(() {

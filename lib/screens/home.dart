@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mapmytrip/screens/profile.dart';
+import 'package:mapmytrip/screens/profile/profile.dart';
 import 'package:mapmytrip/screens/trips.dart';
-import 'package:mapmytrip/screens/topics.dart';
+import 'package:mapmytrip/screens/map.dart';
 import 'package:mapmytrip/widgets/bottom_nav.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _myWidgets = [
-    const TopicsScreen(),
+    const MapScreen(),
     const TripsScreen(),
     const ProfileScreen(),
   ];

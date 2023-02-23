@@ -22,6 +22,14 @@ class FirestoreService {
         {}); //operator ?? zwraca wartość lewą jeśli wartość lewa nie jest typu null, jeśli jest zwraca prawą
   }
 
+  Future<UserData> getUser(String email) async {
+    var ref = _db.collection('users').doc(email);
+    var snapshot = await ref.get();
+    var data = snapshot.data();
+    var user = UserData.fromJson(data!);
+    return user;
+  }
+
   Stream<Report> streamReport() {
     return AuthService().userStream.switchMap((user) {
       if (user != null) {

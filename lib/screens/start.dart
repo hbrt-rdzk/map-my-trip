@@ -16,7 +16,7 @@ class StartScreen extends StatelessWidget {
         } else if (snapshot.hasError) {
           return const Text('error');
         } else if (snapshot.hasData) {
-          return HomeScreen();
+          return const HomeScreen();
         } else {
           return const LoginScreen();
         }

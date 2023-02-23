@@ -8,42 +8,42 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(96, 200, 166, 1),
+        backgroundColor: const Color.fromRGBO(96, 200, 166, 1),
         body: Container(
-      padding: const EdgeInsets.all(30),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Image.asset(
-            'assets/logo.png',
+          padding: const EdgeInsets.all(30),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Image.asset(
+                'assets/logo.png',
+              ),
+              LoginButton(
+                  color: Colors.orangeAccent,
+                  icon: FontAwesomeIcons.doorOpen,
+                  text: "Log in",
+                  loginMethod: AuthService().logIn),
+              LoginButton(
+                color: Colors.orange,
+                text: "Continue as guest",
+                loginMethod: AuthService().anonLogin,
+                icon: FontAwesomeIcons.userNinja,
+              ),
+              LoginButton(
+                color: Colors.blueAccent,
+                icon: FontAwesomeIcons.personCirclePlus,
+                loginMethod: AuthService().signIn,
+                text: "Register account",
+              ),
+              LoginButton(
+                color: Colors.blue,
+                text: "Use your Google account",
+                loginMethod: AuthService().googleSignIn,
+                icon: FontAwesomeIcons.google,
+              )
+            ],
           ),
-          LoginButton(
-              color: Colors.orangeAccent,
-              icon: FontAwesomeIcons.doorOpen,
-              text: "Log in",
-              loginMethod: AuthService().emailLogin),
-          LoginButton(
-            color: Colors.orange,
-            text: "Continue as guest",
-            loginMethod: AuthService().anonLogin,
-            icon: FontAwesomeIcons.userNinja,
-          ),
-          LoginButton(
-            color: Colors.blueAccent,
-            icon: FontAwesomeIcons.personCirclePlus,
-            loginMethod: AuthService().emailLogin,
-            text: "Register account",
-          ),
-          LoginButton(
-            color: Colors.blue,
-            text: "Use your Google account",
-            loginMethod: AuthService().googleSignIn,
-            icon: FontAwesomeIcons.google,
-          )
-        ],
-      ),
-    ));
+        ));
   }
 }
 
@@ -72,7 +72,7 @@ class LoginButton extends StatelessWidget {
         ),
         style: TextButton.styleFrom(
             backgroundColor: color, padding: const EdgeInsets.all(24)),
-        onPressed: () => loginMethod(),
+        onPressed: () => loginMethod(context),
         label: Text(text),
       ),
     );

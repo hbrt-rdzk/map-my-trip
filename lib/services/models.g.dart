@@ -25,6 +25,20 @@ Map<String, dynamic> _$TopicToJson(Topic instance) => <String, dynamic>{
       'quizzes': instance.quizzes,
     };
 
+UserData _$UserDataFromJson(Map<String, dynamic> json) => UserData(
+      name: json['name'] as String? ?? '',
+      surname: json['surname'] as String? ?? '',
+      age: json['age'] as int? ?? 12,
+      nationality: json['nationality'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$UserDataToJson(UserData instance) => <String, dynamic>{
+      'name': instance.name,
+      'surname': instance.surname,
+      'age': instance.age,
+      'nationality': instance.nationality,
+    };
+
 Quiz _$QuizFromJson(Map<String, dynamic> json) => Quiz(
       title: json['title'] as String? ?? '',
       video: json['video'] as String? ?? '',

@@ -20,6 +20,23 @@ class Topic {
 }
 
 @JsonSerializable()
+class UserData {
+  String name;
+  String surname;
+  int age;
+  String nationality;
+
+  UserData(
+      {this.name = '',
+      this.surname = '',
+      this.age = 0,
+      this.nationality = ''});
+  factory UserData.fromJson(Map<String, dynamic> json) =>
+      _$UserDataFromJson(json);
+  Map<String, dynamic> toJson() => _$UserDataToJson(this);
+}
+
+@JsonSerializable()
 class Quiz {
   String id;
   String title;
